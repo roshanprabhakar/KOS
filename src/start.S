@@ -111,6 +111,11 @@ el2_entry:
 	eret
 
 el1_entry:
+/* setup el1 stack pointing to 8KiB above
+	 the beginning of el2's stack. */
+	mov x0, #8192
+	mov sp, x0
+
 /*
 	mrs x0, CurrentEl
 	wfe

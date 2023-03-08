@@ -1,11 +1,13 @@
 #include <stdint.h>
+#include "devices/mini-uart.h"
+#include "printf.h"
 
 unsigned long undcl_long1;
 unsigned long undcl_long2;
 unsigned int undcl_int1;
 
-int kernel_main(void);
-void validate_bss(uint8_t*, uint8_t*);
+int kernel_main (void);
+void validate_bss (uint8_t*, uint8_t*);
 
 /* KERNEL ENTRY POINT 
  * kernel mode addresses: 0xC0000000 to 0xEFFFFFFF (dma)
@@ -16,10 +18,9 @@ void validate_bss(uint8_t*, uint8_t*);
  * physical addressing mode.
  */
 int
-kernel_main ()
+kernel_main (void)
 {
-	*(uint8_t*) 0x0 = 5; // succeeds
-	/* jump through memory to find valid writable memory. */
+	mini_uart_enable ();
 	for (;;);
 }
 

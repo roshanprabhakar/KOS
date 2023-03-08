@@ -7,3 +7,4 @@ set scheduler-locking on
 
 break _start
 layout regs
+info threads
